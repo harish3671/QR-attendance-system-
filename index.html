@@ -1,1 +1,20 @@
-<!DOCTYPE html><html><head><script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script></head><body><center><h2>Dynamic QR - 30s</h2><div id="q"></div><h1 id="t">30s</h1><p id="tok"></p></center><script>let s=30,tk="";function qr(){tk="ATT-"+Date.now();document.getElementById("tok").innerText=tk;document.getElementById("q").innerHTML="";new QRCode(document.getElementById("q"),{text:tk,width:220,height:220});s=30}qr();setInterval(()=>{s--;document.getElementById("t").innerText=s+"s";if(s<=0)qr()},1000);</script></body></html>
+<!DOCTYPE html>
+<html>
+<head><meta name="viewport" content="width=device-width, initial-scale=1"><title>QR Attendance</title></head>
+<body style="font-family:sans-serif;text-align:center;padding:20px">
+<h2>QR Code Attendance</h2>
+<h3>Mark Attendance</h3>
+<input id="name" placeholder="Enter Student Name" style="width:90%;padding:12px;margin:8px;border:1px solid #ccc;border-radius:8px"><br>
+<input id="sid" placeholder="Enter Student ID" style="width:90%;padding:12px;margin:8px;border:1px solid #ccc;border-radius:8px"><br>
+<button onclick="mark()" style="width:90%;padding:12px;background:blue;color:white;border:none;border-radius:8px;font-size:16px">Mark Attendance</button>
+<div style="background:#f0f0f0;padding:15px;border-radius:10px;margin-top:20px;text-align:left"><b>Details</b><br><br><span id="dtext">No attendance yet</span></div>
+<script>
+function mark(){
+let n=document.getElementById("name").value;
+let id=document.getElementById("sid").value;
+if(!n||!id){alert("Name & ID enter pannu");return}
+document.getElementById("dtext").innerHTML="✅ Marked<br>Name: "+n+"<br>ID: "+id+"<br>Time: "+new Date().toLocaleString();
+}
+</script>
+</body>
+</html>
