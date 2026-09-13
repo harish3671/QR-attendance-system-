@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Attendance System</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f5f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #2563eb;
+            color: white;
+            text-align: center;
+            padding: 25px 10px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 30px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #2563eb;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        input {
+            border: 1px solid #ccc;
+        }
+
+        button {
+            border: none;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        #message {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .attendance {
+            margin-top: 25px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>QR Code Attendance System</h1>
+    <p>Student Attendance Management</p>
+</header>
+
+<div class="container">
+
+    <h2>Mark Attendance</h2>
+
+    <input type="text" id="studentName" placeholder="Enter Student Name">
+
+    <input type="text" id="studentId" placeholder="Enter Student ID">
+
+    <button onclick="markAttendance()">Mark Attendance</button>
+
+    <div id="message"></div>
+
+    <div class="attendance">
+        <h3>Attendance Details</h3>
+        <p id="details">No attendance marked yet.</p>
+    </div>
+
+</div>
+
+<script>
+
+function markAttendance() {
+
+    let name = document.getElementById("studentName").value;
+    let id = document.getElementById("studentId").value;
+
+    if (name === "" || id === "") {
+        document.getElementById("message").innerHTML =
+            "Please enter Name and Student ID.";
+        return;
+    }
+
+    let now = new Date();
+
+    let date = now.toLocaleDateString();
+    let time = now.toLocaleTimeString();
+
+    document.getElementById("message").innerHTML =
+        "✅ Attendance Marked Successfully!";
+
+    document.getElementById("details").innerHTML =
+        "<b>Name:</b> " + name +
+        "<br><b>Student ID:</b> " + id +
+        "<br><b>Date:</b> " + date +
+        "<br><b>Time:</b> " + time;
+}
+
+</script>
+
+</body>
+</html>
